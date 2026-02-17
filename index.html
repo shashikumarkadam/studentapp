@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        form {
+            display: none;
+        }
+        form.show {
+            display: block;
+        }
+        input, button {
+            padding: 8px;
+            margin: 8px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        .info {
+            display: none;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .info.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Form</h1>
+    
+    <form id="studentForm" class="show">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="studentId" placeholder="Student ID" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="info" class="info">
+        <h2>Student Information</h2>
+        <p><strong>Name:</strong> <span id="displayName"></span></p>
+        <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+        <p><strong>Student ID:</strong> <span id="displayStudentId"></span></p>
+        <button onclick="resetForm()">Edit</button>
+    </div>
+
+    <script>
+        document.getElementById('studentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const studentId = document.getElementById('studentId').value;
+            
+            document.getElementById('displayName').textContent = name;
+            document.getElementById('displayEmail').textContent = email;
+            document.getElementById('displayStudentId').textContent = studentId;
+            
+            document.getElementById('studentForm').classList.remove('show');
+            document.getElementById('info').classList.add('show');
+        });
+
+        function resetForm() {
+            document.getElementById('studentForm').reset();
+            document.getElementById('studentForm').classList.add('show');
+            document.getElementById('info').classList.remove('show');
+        }
+    </script>
+</body>
+</html>
